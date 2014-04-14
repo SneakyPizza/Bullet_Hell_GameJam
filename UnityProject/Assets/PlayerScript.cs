@@ -1,20 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerScript : MonoBehaviour
 {
-    float movementSpeed = 5.0f;
+    float movementSpeed = 5000.0f;//TODO: figure out better value.
+    public float movementMultiplier = 100.0f;
     float verticalMoveAmount = 0.0f;
     float horizontalMoveAmount = 0.0f;
 
     // Update is called once per frame
     void Update()
     {
-        //verticalMoveAmount = Input.GetAxis("Vertical") * movementSpeed;
-        //horizontalMoveAmount = Input.GetAxis("Horizontal") * movementSpeed;
-        //verticalMoveAmount *= Time.deltaTime;
-        //horizontalMoveAmount *= Time.deltaTime;
-        //transform.Translate(horizontalMoveAmount, verticalMoveAmount, 0);
+        verticalMoveAmount = Input.GetAxis("Vertical") * movementSpeed * movementMultiplier;
+        horizontalMoveAmount = Input.GetAxis("Horizontal") * movementSpeed * movementMultiplier;
     }
 
     void FixedUpdate()
@@ -23,20 +22,22 @@ public class PlayerScript : MonoBehaviour
         rigidbody2D.velocity = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
         {
-            rigidbody2D.AddForce(new Vector2(verticalMoveAmount, 0));
+            rigidbody2D.AddForce(new Vector2(0, verticalMoveAmount));
         }
-        else if (Input.GetKey(KeyCode.S))
+        
+        if (Input.GetKey(KeyCode.S))
         {
-            rigidbody2D.AddForce(new Vector2(verticalMoveAmount, 0));
+            rigidbody2D.AddForce(new Vector2(0, verticalMoveAmount));
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            rigidbody2D.AddForce(new Vector2(0, horizontalMoveAmount));
+            rigidbody2D.AddForce(new Vector2(horizontalMoveAmount, 0));
         }
-        else if (Input.GetKey(KeyCode.D))
+        
+        if (Input.GetKey(KeyCode.D))
         {
-            rigidbody2D.AddForce(new Vector2(0, horizontalMoveAmount));
+            rigidbody2D.AddForce(new Vector2(horizontalMoveAmount, 0));
         }
     }
 }
