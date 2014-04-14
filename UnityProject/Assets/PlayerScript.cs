@@ -9,7 +9,16 @@ public class PlayerScript : MonoBehaviour
     float verticalMoveAmount = 0.0f;
     float horizontalMoveAmount = 0.0f;
 
-    // Update is called once per frame
+    void OnTriggerEnter()
+    {
+    }
+
+    void OnCollisionEnter(Collider col)
+    {
+        
+    }
+
+
     void Update()
     {
         verticalMoveAmount = Input.GetAxis("Vertical") * movementSpeed * movementMultiplier;
@@ -18,13 +27,13 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+
         rigidbody2D.velocity = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
         {
             rigidbody2D.AddForce(new Vector2(0, verticalMoveAmount));
         }
-        
+
         if (Input.GetKey(KeyCode.S))
         {
             rigidbody2D.AddForce(new Vector2(0, verticalMoveAmount));
@@ -34,7 +43,7 @@ public class PlayerScript : MonoBehaviour
         {
             rigidbody2D.AddForce(new Vector2(horizontalMoveAmount, 0));
         }
-        
+
         if (Input.GetKey(KeyCode.D))
         {
             rigidbody2D.AddForce(new Vector2(horizontalMoveAmount, 0));
