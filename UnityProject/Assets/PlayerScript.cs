@@ -18,6 +18,10 @@ public class PlayerScript : MonoBehaviour
         
     }
 
+    void OnGUI()
+    {
+
+    }
 
     void Update()
     {
